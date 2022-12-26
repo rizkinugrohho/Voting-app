@@ -1,0 +1,36 @@
+a,
+button {
+    cursor: pointer;
+}
+.add-option {
+    padding-left: 1.55rem;
+}
+.btn-danger {
+    margin-left: 1rem;
+}
+
+.list-group {
+    margin-top: 1rem;
+}
+
+.add-option-input {
+    border-top-left-radius: 0;
+}
+
+.add-option {
+    cursor: pointer; 
+    background-color: #0275d8;
+    color:white;
+    border-top-right-radius: 0;
+    width: 4rem;
+}
+
+.add-option:disabled, .add-option:disabled:hover {
+    cursor: not-allowed;
+    background-color: LightGray;
+    color: white;
+}
+
+.add-option:hover {
+    background-color: #025aa5;
+}

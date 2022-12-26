@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-lg-8">
+        <h1 class="header clearfix">{{ poll.title }}</h1>
+        <h2 class="text-muted small">{{ poll.displayName }}</h2>
+    </div>
+    <div class="col-lg-4">
+        <div class="pull-right" *ngIf="canRemove">
+            <button title="Remove Poll" class="btn btn-danger" type="button" (click)="onRemovePoll()"><i class="fa fa-trash-o"></i></button>
+        </div>
+        <div class="pull-right">
+            <button class="twitter-share-button btn btn-primary" (click)="shareOnTwitter(poll.title)">
+                <i class="fa fa-twitter"></i> Share on Twitter</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-6" *ngIf="!voted && poll.title!=''" [@leaveAnimation]>
+        <div class="list-group" [@listItem]>
+            <a class="list-group-item list-group-item-action justify-content-between" (click)="onSubmit(i)" *ngFor="let option of poll.options;let i = index;">{{option.name}} <span class="badge badge-default badge-pill" >{{option.votes}}</span></a>
+            <form (ngSubmit)="onAddOption(newOption.value)">
+            <div class="input-group">
+                <input name="new-option" type="text" class="add-option-input form-control list-group-item" #newOption placeholder="Add new option..." (keyup)="0"/>
+                <button [disabled]="!(newOption.value.length>0)" type="submit" class="text-center add-option input-group-addon" >
+                <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            </form>
+        </div>    
+    </div>
+    <div class="col-12 col-md-6 " style="margin: 0 auto;">
+        <div *ngIf="isDataAvailable ">
+            <canvas #pollChart="base-chart" baseChart [data]="doughnutChartData " [labels]="doughnutChartLabels " [chartType]="doughnutChartType " (chartHover)="chartHovered($event) " (chartClick)="chartClicked($event) "></canvas>
+        </div>
+    </div>
+</div>

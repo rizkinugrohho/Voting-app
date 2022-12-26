@@ -1,0 +1,28 @@
+<h1>
+    New Poll</h1>
+<hr/>
+<form [formGroup]="pollForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" formControlName="title" />
+    </div>
+    <div class="form-group" formArrayName="options">
+        <label for="options">Options:</label>
+        <div *ngFor="let optionCtrl of getOptions(pollForm); let i = index" [formGroupName]="i" style="margin-top: 10px;">
+            <div class="input-group">
+                <input type="text" class="form-control" formControlName="name" />
+                <span class="input-group-addon" (click)="onDeleteOption(i)" style="cursor: pointer">
+                <i class="fa fa-trash-o"></i>
+              </span>
+            </div>
+            <input type="hidden" formControlName="votes" value="0" />
+        </div>
+        <hr/>
+        <div class="row text-right">
+            <div class="col">
+                <button type="button" class="btn btn-success" (click)="onAddOption()"><i class="fa fa-plus"></i> Add Option</button>
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="!isValid()" class="btn btn-default">Publish</button>
+</form>

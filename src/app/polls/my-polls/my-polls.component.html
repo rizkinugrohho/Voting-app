@@ -1,0 +1,6 @@
+<h1>My Polls</h1>
+<p class="lead text-muted">Select a poll to see the results and vote, or <a routerLink="/polls/new">make a new poll</a>!</p>
+<hr/>
+<div class="list-group">
+    <a class="list-group-item list-group-item-action" [routerLink]="['/poll', poll.$key]" *ngFor="let poll of polls;" [@listItem] (@listItem.done)="doNext()">{{poll.title}}</a>
+</div>
